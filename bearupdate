@@ -1,0 +1,31 @@
+#!/bin/bash
+
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+BROWN="\033[1;33m"
+NOCOLOR="\033[0m"
+
+# if not root, run as root
+if (( $EUID != 0 )); then
+    #place this scrip in /usr/local/bin/ to run it whenever you want
+    sudo /usr/local/bin/bearupdate
+    exit
+fi
+echo -e "${GREEN}Ok, let\`s start! ${BROWN}ʕ •ᴥ• ʔ${NOCOLOR}\n"
+echo -e "${GREEN}1. Updating the package list for upgrades..${NOCOLOR}"
+  apt update
+echo -e "${GREEN}Nice! Update finished! ${BROWN} ʕ˵•ₒ•˵ʔ ${NOCOLOR}\n"
+echo -e "${GREEN}2. Installing newest versions of all packages...${NOCOLOR}"
+  apt -y dist-upgrade
+echo -e "${GREEN}Upgraded! ${BROWN}ᕦ ʕ •ᴥ•ʔᕤ${NOCOLOR}\n"
+echo -e "${GREEN}3. Cleaning up...${NOCOLOR}"
+  apt -y autoremove
+  apt clean
+echo -e "${GREEN}Better! ${BROWN}ʕ´•ᴥ•\`ʔ${NOCOLOR}\n"
+echo -e "\n${GREEN}Your system is up to date now! ${BROWN}ʕ ᵔᴥᵔ ʔ${NOCOLOR}\n"
+
+if [ -f /var/run/reboot-required ]; then
+
+    echo -e "${RED}Damn! ${BROWN}ʕ； •\`ᴥ•´ʔ${NOCOLOR}"
+    echo -e "\n${RED}Reboot required! ${BROWN}ʕノ•ᴥ•ʔノ ︵ ┻━┻${NOCOLOR}\n"
+fi
