@@ -7,7 +7,7 @@ NOCOLOR="\033[0m"
 
 # if not root, run as root
 if (( $EUID != 0 )); then
-    #place this scrip in /usr/local/bin/ to run it whenever you want
+    #place this script in the /usr/local/bin/ directory to run it whenever you want
     sudo /usr/local/bin/bearupdate
     exit
 fi
