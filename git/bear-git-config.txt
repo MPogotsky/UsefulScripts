@@ -1,0 +1,14 @@
+[user]
+        name = <name>
+        email = <email>
+[color]
+        ui = true
+[pull]
+        rebase = true
+[alias]
+        br = branch
+        co = checkout
+        st = status
+        lg = log --oneline --graph --decorate
+        lga = log --oneline --decorate --graph --all
+        lol = log --graph --pretty=format:'%C(yellow)%h -%C(auto)%d %C(reset)%s %C(blue)(%cd)%Creset %C(bold cyan)<%an>' --date=relative

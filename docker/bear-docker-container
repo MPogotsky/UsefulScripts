@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import argparse
+import subprocess
+from datetime import date
+
+def run_docker_container(image_id, memory_limit, cpu_limit, container_name=None,):
+    # Construct the docker run command
+    # You can delete --rm to keep data generated in container
+    # under paths that are not mounted.
+    docker_run_cmd = ["docker", "run", "-it", "--rm"]
+
+    if container_name:
+         docker_run_cmd += ["--name", container_name]
+
+    current_directory = os.getcwd()
+    docker_run_cmd += ["-v", f"{current_directory}:{current_directory}"]
+
+    docker_run_cmd += ["-m", memory_limit]
+
+    docker_run_cmd += ["--cpus", cpu_limit]
+
+    docker_run_cmd.append(image_id)
+
+    docker_run_cmd.append("/bin/bash")
+
+    # Run the docker container
+    try:
+        subprocess.run(docker_run_cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error starting container '{container_name}': {e}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description="Run a Docker container, mount current dir and connect to it with bash.")
+    parser.add_argument("image_id", help="The ID of the Docker image to use.")
+    parser.add_argument("--container_name", help="The name of the container to create.")
+    parser.add_argument("--memory_limit", help="Optional memory limit for the container (e.g., '512m').", default="2g")
+    parser.add_argument("--cpu_limit", help="Optional CPU limit for the container (e.g., '1.5').", default="4")
+
+    args = parser.parse_args()
+
+    if args.image_id == None:
+        print("Error no image ID provided")
+        sys.exit(1)
+
+    run_docker_container(args.image_id, args.memory_limit, args.cpu_limit, args.container_name)
