@@ -9,12 +9,12 @@ Below is a list of scripts/aliases included in this project, along with brief de
 
 1. **bear-docker-container**
    - Description: This script performs setup of docker container based on existing image with some options 
-   - README: For detailed usage instructions and configuration settings, see [docker README](./docker/README.md).
+   - README: For detailed usage instructions and configuration settings, see [docker](./docker/).
 
 2. **bear-update**
    - Description: This script performs system update with some additional useful steps 
-   - README: For detailed usage instructions and configuration settings, see [system-update README](./system-update/README.md).
+   - README: For detailed usage instructions and configuration settings, see [system-update](./system-update/).
 
 3. **bear-git-config**
    - Description: This is configuration and set of aliases for your git terminal
-   - README: For detailed usage instructions and configuration settings, see [git README](./git/README.md).
+   - README: For detailed usage instructions and configuration settings, see [git](./git/).

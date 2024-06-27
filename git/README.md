@@ -11,7 +11,7 @@ nano ~/.gitconfig
 
 2. Copy and paste the configuration from [bear-git-config.txt](./bear-git-config.txt) your `.gitconfig` file
 
-3. Replace **\<name\>** and **\<email\>** with your actual name and email address.
+3. Replace `<name>` and `<email>` with your actual name and email address.
 
 4. Save and close the file
 
